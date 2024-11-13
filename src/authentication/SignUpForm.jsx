@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "tailwindcss/tailwind.css"; // Ensure this is imported if not already
 
 function Signupdup() {
   const initialValues = {
@@ -37,73 +37,71 @@ function Signupdup() {
   });
 
   return (
-    <div className="container d-flex justify-content-center align-items-center min-vh-100 bg-light">
-      <div className="col-12 col-sm-8 col-md-6 col-lg-5">
-        <div className="card shadow p-4">
-          <h2 className="text-center mb-4">Signup</h2>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-          >
-            {() => (
-              <Form>
-                <div className="mb-3">
-                  <label htmlFor="username" className="form-label">Name</label>
-                  <Field
-                    type="text"
-                    name="username"
-                    className="form-control"
-                    placeholder="Enter your name"
-                  />
-                  <ErrorMessage name="username" component="div" className="text-danger small mt-1" />
-                </div>
+    <div className="flex justify-start items-center min-h-screen bg-gray-100 px-4">
+      <div className="w-full max-w-xs p-6 bg-white shadow-xl rounded-lg">
+        <h2 className="text-2xl font-semibold text-center mb-6">Signup</h2>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {() => (
+            <Form>
+              <div className="mb-4">
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700">Name</label>
+                <Field
+                  type="text"
+                  name="username"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your name"
+                />
+                <ErrorMessage name="username" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
 
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
-                  <Field
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter your email"
-                  />
-                  <ErrorMessage name="email" component="div" className="text-danger small mt-1" />
-                </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <Field
+                  type="email"
+                  name="email"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your email"
+                />
+                <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
 
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
-                  <Field
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="Enter your password"
-                  />
-                  <ErrorMessage name="password" component="div" className="text-danger small mt-1" />
-                </div>
+              <div className="mb-4">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                <Field
+                  type="password"
+                  name="password"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your password"
+                />
+                <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
 
-                <div className="mb-3">
-                  <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                  <Field
-                    type="password"
-                    name="cpassword"
-                    className="form-control"
-                    placeholder="Confirm your password"
-                  />
-                  <ErrorMessage name="cpassword" component="div" className="text-danger small mt-1" />
-                </div>
+              <div className="mb-4">
+                <label htmlFor="cpassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <Field
+                  type="password"
+                  name="cpassword"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Confirm your password"
+                />
+                <ErrorMessage name="cpassword" component="div" className="text-red-500 text-sm mt-1" />
+              </div>
 
-                <div className="d-grid mt-4">
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
+              <div className="mt-6">
+                <button
+                  type="submit"
+                  className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Submit
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );

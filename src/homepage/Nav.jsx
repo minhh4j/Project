@@ -11,11 +11,11 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container-fluid">
         
-        {/* Logo */}
+        {/* Logo the pet shop */}
         <a className="navbar-brand d-flex align-items-center" href="#">
           <img 
             src="https://images-platform.99static.com//N4VUoRJLktkazbY_0VENbLXlRyI=/13x0:1589x1576/fit-in/500x500/99designs-contests-attachments/98/98546/attachment_98546587" 
-            alt="Pet Store Logo" 
+            alt="Pet Store Logo"
             width="50" 
             height="50"
             className="me-2"
@@ -23,7 +23,7 @@ function Nav() {
           Pet Paradise
         </a>
 
-        {/* Search Bar */}
+        {/* Search Bar and Button */}
         <div className="d-flex align-items-center ms-auto me-3">
           <input 
             type="text" 
@@ -35,7 +35,7 @@ function Nav() {
           </button>
         </div>
 
-        {/* Icons with Labels */}
+        {/* Nav All Icons with Labels  */}
         <div className="d-flex align-items-center">
           <div className="nav-item text-center mx-3">
             <MdPets size="1.5em" />
