@@ -1,8 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ProductContext } from '../Context/ProductContext';
+import ProductInfoModal from './ProductInfoModal';
 
 function Center() {
   const { product } = useContext(ProductContext);
+  const [selectedProduct, setSelectedProduct] = useState(null)
+
+
+  const handleImageClick =(product) => {
+    setSelectedProduct(product)  // Set the clicked product to state open 
+  }
+  
+  const closedModal = () => {
+    setSelectedProduct(null) // this close the modal
+  }
 
   return (
     <div className="container py-4">
@@ -11,11 +22,13 @@ function Center() {
           <div className="flex justify-center" key={item.id}>
             <div
               className="h-full overflow-hidden transition-all duration-300 transform bg-white rounded-lg shadow-md card w-52 hover:scale-105 hover:shadow-xl"
+              onClick={() => handleImageClick(product)}
             >
               <img
                 src={item.image}
                 className="object-cover w-full h-32"
                 alt={item.name}
+                
               />
               <div className="p-3 text-center">
                 <h6 className="text-sm font-semibold">{item.name}</h6>
@@ -31,6 +44,11 @@ function Center() {
           </div>
         ))}
       </div>
+      {
+        selectedProduct && (
+          <ProductInfoModal product={selectedProduct} onClose={closedModal} />
+        )
+      }
     </div>
   );
 }
