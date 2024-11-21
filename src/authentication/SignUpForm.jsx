@@ -3,6 +3,7 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import "tailwindcss/tailwind.css"; // Ensure this is imported if not already
+import { Link } from "react-router-dom";
 
 function Signupdup() {
   const initialValues = {
@@ -10,6 +11,8 @@ function Signupdup() {
     email: "",
     password: "",
     cpassword: "",
+    cart:[],
+    order:[]
   };
 
   const onSubmit = async (values) => {
@@ -23,23 +26,28 @@ function Signupdup() {
       const response = await axios.post("http://localhost:3008/user", values);
       console.log("Successfully submitted", response.data);
     } catch (error) {
+      toast.error("🚨 Error creating account. Please try again.");
       console.error("Error during submission:", error);
     }
   };
 
   const validationSchema = Yup.object({
     username: Yup.string().required("Name is required"),
-    email: Yup.string().required("Email is required").email("Invalid email address"),
-    password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+    email: Yup.string()
+      .required("Email is required")
+      .email("Invalid email address"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
     cpassword: Yup.string()
       .required("Confirm Password is required")
       .oneOf([Yup.ref("password")], "Passwords must match"),
   });
 
   return (
-    <div className="flex justify-start items-center min-h-screen bg-gray-100 px-4">
-      <div className="w-full max-w-xs p-6 bg-white shadow-xl rounded-lg">
-        <h2 className="text-2xl font-semibold text-center mb-6">Signup</h2>
+    <div className="flex items-center justify-start min-h-screen px-4 bg-sky-300">
+      <div className="max-w-xs p-6 rounded-lg shadow-xl h-100 w-150 bg-sky-200">
+        <h2 className="mb-6 text-2xl font-semibold text-center">Signup</h2>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -48,57 +56,99 @@ function Signupdup() {
           {() => (
             <Form>
               <div className="mb-4">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700">Name</label>
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Name
+                </label>
                 <Field
                   type="text"
                   name="username"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your name"
                 />
-                <ErrorMessage name="username" component="div" className="text-red-500 text-sm mt-1" />
+                <ErrorMessage
+                  name="username"
+                  component="div"
+                  className="mt-1 text-sm text-red-500"
+                />
               </div>
 
               <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email
+                </label>
                 <Field
                   type="email"
                   name="email"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your email"
                 />
-                <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="mt-1 text-sm text-red-500"
+                />
               </div>
 
               <div className="mb-4">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Password
+                </label>
                 <Field
                   type="password"
                   name="password"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your password"
                 />
-                <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="mt-1 text-sm text-red-500"
+                />
               </div>
 
               <div className="mb-4">
-                <label htmlFor="cpassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <label
+                  htmlFor="cpassword"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Confirm Password
+                </label>
                 <Field
                   type="password"
                   name="cpassword"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Confirm your password"
                 />
-                <ErrorMessage name="cpassword" component="div" className="text-red-500 text-sm mt-1" />
+                <ErrorMessage
+                  name="cpassword"
+                  component="div"
+                  className="mt-1 text-sm text-red-500"
+                />
               </div>
 
               <div className="mt-6">
                 <button
                   type="submit"
-                  className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Submit
                 </button>
               </div>
+              <p>
+                Have an Account?{" "}
+                <Link className="link" to={"/login"}>
+                  Please Login
+                </Link>
+              </p>
             </Form>
           )}
         </Formik>
@@ -107,4 +157,4 @@ function Signupdup() {
   );
 }
 
-export default Signupdup;
+export default Signupdup; 

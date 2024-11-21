@@ -1,8 +1,12 @@
+
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import axios from "axios";
 import { ProductContext } from "../Context/ProductContext";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginForm() {
   const initialValues = {
@@ -11,36 +15,58 @@ function LoginForm() {
   };
 
   const { login } = useContext(ProductContext);
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object({
-    email: Yup.string().required("Email is required").email("Invalid email address"),
-    password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+    email: Yup.string()
+      .required("Email is required")
+      .email("Invalid email address"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
   });
 
   const onSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
       const response = await axios.get("http://localhost:3008/user");
-      const users = response.data;
-
-      const user = users.find((x) => x.email === values.email && x.password === values.password);
+      const users = response.data || [];
+      const user = users.find(
+        (x) => x.email === values.email && x.password === values.password
+      );
 
       if (user) {
-        login(user.username);
+        login(user.username, user.email);
+        toast.success("Login successful!", {
+          position: "top-center",
+          autoClose: 2000,
+          onClose: () => navigate("/"),
+        });
       } else {
         setErrors({ login: "Invalid email or password" });
+        toast.error("Invalid email or password");
       }
     } catch (error) {
+      console.error("Login error:", error);
       setErrors({ login: "Something went wrong. Please try again later." });
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
   };
 
+  useEffect(() => {
+    toast.info("Please login with your credentials", {
+      position: "top-center",
+      autoClose: 3000,
+    });
+  }, []);
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-sky-300">
       <div className="w-full sm:w-96">
-        <div className="card shadow-lg p-6 rounded-lg bg-white">
-          <h2 className="text-center text-2xl font-semibold mb-6">Login</h2>
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <ToastContainer />
+          <h2 className="mb-6 text-2xl font-semibold text-center">Login</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -49,38 +75,67 @@ function LoginForm() {
             {({ errors, isSubmitting }) => (
               <Form>
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
                   <Field
                     type="email"
                     name="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md"
                     placeholder="Enter your email"
                   />
-                  <ErrorMessage name="email" component="div" className="text-red-500 text-xs mt-1" />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-xs text-red-500"
+                  />
                 </div>
 
                 <div className="mb-4">
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Password
+                  </label>
                   <Field
                     type="password"
                     name="password"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md"
                     placeholder="Enter your password"
                   />
-                  <ErrorMessage name="password" component="div" className="text-red-500 text-xs mt-1" />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="text-xs text-red-500"
+                  />
                 </div>
 
-                {errors.login && <div className="text-red-500 text-xs mb-3">{errors.login}</div>}
+                {errors.login && (
+                  <div className="mb-3 text-xs text-red-500">
+                    {errors.login}
+                  </div>
+                )}
 
                 <div className="mt-4">
                   <button
                     type="submit"
-                    className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full py-2 text-white bg-blue-500 rounded-md"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Logging in..." : "Submit"}
                   </button>
                 </div>
+
+                <p className="mt-3 text-sm text-center">
+                  No Account?{" "}
+                  <Link className="text-blue-500 hover:underline" to={"/signin"}>
+                    Create Account
+                  </Link>
+                </p>
               </Form>
             )}
           </Formik>

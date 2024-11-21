@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from './nav'; // Make sure this is correct
-import HeroSection from './HeroSection'; // Make sure this is correct
+import Nav from './nav'; 
+import HeroSection from './HeroSection';
 import Center from './Center';
 
 function HomePage() {

@@ -1,49 +1,29 @@
 {
   "user": [
     {
-      "id": "02e2",
+      "id": "1aab",
       "username": "minhaj",
       "email": "mnhh4jjjj@gmail.com",
       "password": "123456",
       "cpassword": "123456"
     },
     {
-      "id": "0510",
+      "id": "7a9b",
       "username": "minhaj",
       "email": "mnhh4jjjj@gmail.com",
-      "password": "789456",
-      "cpassword": "789456"
+      "password": "123456",
+      "cpassword": "123456"
     },
     {
-      "id": "9d81",
-      "username": "minhaj",
-      "email": "mnhh4jjjj@gmail.com",
-      "password": "789456",
-      "cpassword": "789456"
-    },
-    {
-      "id": "cff0",
-      "username": "minhaj",
-      "email": "mnhh4jjjj@gmail.com",
-      "password": "789456",
-      "cpassword": "789456"
-    },
-    {
-      "id": "b8bf",
-      "username": "minhaj",
-      "email": "mnhh4jjjj@gmail.com",
-      "password": "789456",
-      "cpassword": "789456"
-    },
-    {
-      "id": "d266",
-      "username": "Hisham",
-      "email": "hisham@gmail.com",
-      "password": "121212",
-      "cpassword": "121212"
+      "id": "b60b",
+      "username": "nifras",
+      "email": "nifras@gmail.com",
+      "password": "123456",
+      "cpassword": "123456",
+      "cart": [],
+      "order": []
     }
   ],
-
   "products": [
     {
       "name": "Barky Bites Premium Dog Food",
@@ -517,6 +497,3 @@
     }
   ]
 }
-  
-
-
