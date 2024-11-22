@@ -14,7 +14,7 @@ function LoginForm() {
     password: "",
   };
 
-  const { login } = useContext(ProductContext);
+
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
@@ -35,7 +35,8 @@ function LoginForm() {
       );
 
       if (user) {
-        login(user.username, user.email);
+        localStorage.setItem("id",user.id)
+        localStorage.setItem("username", user.username);
         toast.success("Login successful!", {
           position: "top-center",
           autoClose: 2000,
@@ -52,7 +53,11 @@ function LoginForm() {
     } finally {
       setSubmitting(false);
     }
-  };
+  }; 
+  
+
+  
+
 
   useEffect(() => {
     toast.info("Please login with your credentials", {
@@ -62,9 +67,17 @@ function LoginForm() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-sky-300">
+    <div
+  className="flex items-center justify-center min-h-screen"
+  style={{
+    backgroundImage: `url('https://as1.ftcdn.net/v2/jpg/01/67/61/88/1000_F_167618810_WYbpRVYGFXQrBOj2Hj3L1uaMRk1kjx15.jpg')`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  }}
+>
       <div className="w-full sm:w-96">
-        <div className="p-6 bg-white rounded-lg shadow-lg">
+        <div className="p-6 bg-transparent rounde-lg bg-whit">
           <ToastContainer />
           <h2 className="mb-6 text-2xl font-semibold text-center">Login</h2>
           <Formik

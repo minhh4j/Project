@@ -1,22 +1,32 @@
-import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export const ProductContext = createContext();
 
-// login
+
 function ProductProvider({ children }) {
-  const [product, setProduct] = useState([]);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [product, setProduct] = useState([]);  
   const [serchTream, setSerchTream] = useState("");
   const [cart, setCart] = useState([]);
   const [curretUser, setCorentuser] = useState(null);
-  const [toastMessage, setToastMessage] = useState("");
   const [cetogery, setCetogery] = useState("");
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [search,setSearch]=useState('')
+  const id = localStorage.getItem("id")
+  
+
+  // const handleSetOrders = (order) => {
+  //   setOrders((prevOrders) => [...prevOrders, order]); // Adds new order to the list
+  // };
+
   const navigate = useNavigate();
   const [filteredProduct, setFilteredProduct] = useState([]);
-  console.log(cart);
+  console.log(cart,"this is cart");
+let x=cart.length
+localStorage.setItem("cartCount",x);
+console.log(cart);
+
 
   //fetch products in home page
   useEffect(() => {
@@ -31,39 +41,42 @@ function ProductProvider({ children }) {
     fetchProduct();
   }, []);
 
-  // login
 
-  const login = async (username, email) => {
-    setLoggedIn(true);
-    localStorage.setItem("username", username);
-    localStorage.setItem("email", email);
+
+  const handleAddOrder = async () => {
+    try {
+      const order = {
+        items: [...cart],
+        totalAmount: totelAmount,
+        orderDate: new Date().toISOString(),
+      };
+  
+      console.log(order, "order");
+
+      setOrders((prevOrders) => [...prevOrders, order]);
+      setCart([]);
+      await axios.patch(`http://localhost:3008/user/${id}`, {
+        order:[...orders,order],
+      });
+      await axios.patch(`http://localhost:3008/user/${id}`, { cart: [] });
+      alert("Your order has been placed!");
+    } catch (error) {
+      console.error("Error placing order:", error);
+    }
   };
+  useEffect(() => {
+  const  fetChOrderDb = async () => {
+    try{
+    const  responce  =  await axios.get(`http://localhost:3008/user/${id}`)
+      setOrders(responce.data.order)
+    }
+    catch(error){
+      console.error(error)
+    }
+   }
+   fetChOrderDb()
+  },[id])
 
-  //logout
-
-  const logout = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
-    setLoggedIn(false);
-    setCart([]);
-    setCorentuser(null);
-    navigate("/");
-  };
-
-  //logout Modal
-
-  const handleLogout = () => {
-    setShowConfirm(true);
-  };
-
-  const confirmLogout = () => {
-    logout();
-    setShowConfirm(false);
-  };
-
-  const cancelLogout = () => {
-    setShowConfirm(false);
-  };
 
   // search  cheyunnath varaan vendi
   useEffect(() => {
@@ -90,40 +103,50 @@ function ProductProvider({ children }) {
     if (itemToRemove) {
       const updatedCart = cart.filter((item) => item.id !== productId);
       setCart(updatedCart);
-      await updateUserCartInDB(updatedCart);
-      await restoreProductStock(itemToRemove.id, itemToRemove.quantity);
+      await axios.patch(`http://localhost:3008/user/${id}`, {cart:updatedCart}),(updatedCart);
+
     }
   };
 
-  // Update quantity of items in cart
-  const updateQuantity = async (productId, quantity) => {
+  // incrementquantity of items in cart
+  const incrementQuantity = async (productId, quantity) => {
     const itemToUpdate = cart.find((item) => item.id === productId);
     if (itemToUpdate) {
-      const product = product.find((prod) => prod.id === productId);
-      if (product && quantity > product.stock) {
-        // Show toast alert if stock is not available
+      const products = product.find((prod) => prod.id === productId);
+      if (products && quantity > products.stock) { 
         toast.error("Stock not available for this quantity.");
-        return; // Prevent updating quantity if stock is 0
+        return; 
       }
-
       const updatedCart = cart.map((item) =>
         item.id === productId
-          ? { ...item, quantity: Math.max(1, quantity) }
+          ? { ...item, quantity: Math.max(1, item.quantity + 1) }
           : item
       );
-
-      // Update stock based on new quantity
-      const quantityDifference = quantity - itemToUpdate.quantity;
-      if (quantityDifference > 0) {
-        await updateProductStock(productId, quantityDifference);
-      } else {
-        await restoreProductStock(productId, -quantityDifference);
-      }
-
-      setCart(updatedCart);
-      await updateUserCartInDB(updatedCart);
+      setCart(updatedCart); 
+      await axios.patch(`http://localhost:3008/user/${id}` , {cart:updatedCart})
     }
   };
+  
+  //dicrementquantity of items in cart
+  const  decrementQuantity = async (productId, quantity) => {
+    const itemToUpdate = cart.find((item) => item.id === productId);
+    if (itemToUpdate) {
+      const products = product.find((prod) => prod.id === productId);
+      if (products && quantity > products.stock) { 
+        toast.error("Stock not available for this quantity.");
+        return; 
+      }
+      const updatedCart = cart.map((item) =>
+        item.id === productId
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+          : item
+      );
+      setCart(updatedCart); 
+      await axios.patch(`http://localhost:3008/user/${id}` , {cart:updatedCart})
+    }
+  };
+  
+
 
   // wish list
   const addToWishlist = async (product) => {
@@ -161,60 +184,68 @@ function ProductProvider({ children }) {
   };
 
 
-const addToCart = async (product) => {
-  
-  const updatedCart = [...cart];
-  
-  const existingItem = updatedCart.find((item) => item.id === product.id);
 
-  if (existingItem) {
-  
-    existingItem.quantity += 1;
-  } else {
+  const addToCart = async (product) => {
+
+    const updatedCart = [...cart];
+    const existingItem = updatedCart.find((item) => item.id === product.id);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      updatedCart.push({ ...product, quantity: 1 });
+      console.log(product,"sdf")
+
+    }
+    setCart(updatedCart);
     
-    updatedCart.push({ ...product, quantity: 1 });
-  }
+   await axios.patch(`http://localhost:3008/user/${id}` , {cart:updatedCart})
+    console.log("Cart after adding product:", updatedCart);
 
-  setCart(updatedCart );
-
-  await updateUserCartInDB(updatedCart);
-
-  console.log("Cart after adding product:", updatedCart);
-};
-
-  
-    const updateUserCartInDB = async (updatedCart) => {
-      if (currentUser) {
-          try {
-              await axios.patch(`http://localhost:3008/user/${curretUser.id}`, { cart: updatedCart });
-          } catch (error) {
-              console.error("Error updating cart:", error);
-          }
-      }
   };
 
+
   
+ 
+  useEffect(() => {
+    const fetchCartDb = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3008/user/${id}`);
+        console.log(response.data, "asdfgh");
+        setCart(response.data.cart);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCartDb();
+  }, [id]);
+  
+
+const totelAmount = cart.reduce((acc,val) => acc+( val.price * val.quantity) , 0).toFixed(2)
+
+
   return (
     <ProductContext.Provider
       value={{
-        login,
-        loggedIn,
+        totelAmount,
+        
         product,
         cart,
-        updateQuantity,
+        setCart,
+        incrementQuantity,
         removeFromCart,
-        setToastMessage,
         addToWishlist,
         clearWishlist,
         removeFromWishlist,
-        confirmLogout,
         addToCart,
-        handleLogout,
-        cancelLogout,
         curretUser,
-        toastMessage,
         setCetogery,
         setSerchTream,
+        decrementQuantity,
+        orders,
+        setOrders,
+        handleAddOrder,
+        search,
+        setSearch
       }}
     >
       {children}
@@ -223,4 +254,4 @@ const addToCart = async (product) => {
 }
 
 export default ProductProvider;
-
+ 

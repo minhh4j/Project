@@ -3,7 +3,7 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import "tailwindcss/tailwind.css"; // Ensure this is imported if not already
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signupdup() {
   const initialValues = {
@@ -15,16 +15,29 @@ function Signupdup() {
     order:[]
   };
 
+  const navigate = useNavigate()
+  
   const onSubmit = async (values) => {
     if (values.password !== values.cpassword) {
       console.log("Passwords do not match");
+      
       return;
     }
 
+    const responce = await axios.get("http://localhost:3008/user" )
+    const users = responce.data
+    const user =users.find((x) => x.email === values.email)
+    if(user) {
+    alert("alredy login")
+    return ; 
+    }
+    
+    
     try {
       console.log(values, "check");
       const response = await axios.post("http://localhost:3008/user", values);
       console.log("Successfully submitted", response.data);
+      navigate("/login")
     } catch (error) {
       toast.error("🚨 Error creating account. Please try again.");
       console.error("Error during submission:", error);
@@ -43,10 +56,15 @@ function Signupdup() {
       .required("Confirm Password is required")
       .oneOf([Yup.ref("password")], "Passwords must match"),
   });
-
+  // /g
   return (
-    <div className="flex items-center justify-start min-h-screen px-4 bg-sky-300">
-      <div className="max-w-xs p-6 rounded-lg shadow-xl h-100 w-150 bg-sky-200">
+    <div className="flex items-center justify-start min-h-screen px-4"style={{
+      backgroundImage: `url('https://as2.ftcdn.net/v2/jpg/01/99/00/79/1000_F_199007925_NolyRdRrdYqUAGdVZV38P4WX8pYfBaRP.jpg')`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+    }} >
+      <div className="max-w-xs p-6 bg-transparent rounded-lg h-100 w-150" >
         <h2 className="mb-6 text-2xl font-semibold text-center">Signup</h2>
         <Formik
           initialValues={initialValues}
