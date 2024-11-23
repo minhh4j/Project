@@ -7,7 +7,7 @@ function HeroSection() {
       <img 
         src="src/assets/cat-dog.jpg" 
         alt="Cat and Dog" 
-        className="w-[800px] h-[400px] object-cover shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl" 
+        className="w-[1000px] h-[400px] object-cover shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl" 
       />
     </div>
   );

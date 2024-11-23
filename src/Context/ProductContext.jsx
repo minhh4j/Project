@@ -43,15 +43,8 @@ console.log(cart);
 
 
 
-  const handleAddOrder = async () => {
+  const handleAddOrder = async (order) => {
     try {
-      const order = {
-        items: [...cart],
-        totalAmount: totelAmount,
-        orderDate: new Date().toISOString(),
-      };
-  
-      console.log(order, "order");
 
       setOrders((prevOrders) => [...prevOrders, order]);
       setCart([]);
@@ -77,25 +70,6 @@ console.log(cart);
    fetChOrderDb()
   },[id])
 
-
-  // search  cheyunnath varaan vendi
-  useEffect(() => {
-    let filterProduct = () => {
-      let filtered = product;
-      // serch cheythth mukalilek varaan
-      if (serchTream) {
-        filtered = product.filter((product) =>
-          product.name.toLowerCase().includes(serchTream.toLowerCase())
-        );
-      }
-      // filteril ollath onnum koduthittillagil
-      else if (cetogery) {
-        filtered = product.filter((product) => product.cetogery === cetogery);
-      }
-      setFilteredProduct(filtered);
-    };
-    filterProduct();
-  }, [cetogery, serchTream, product]);
 
   // Remove item from cart
   const removeFromCart = async (productId) => {
@@ -145,48 +119,8 @@ console.log(cart);
       await axios.patch(`http://localhost:3008/user/${id}` , {cart:updatedCart})
     }
   };
-  
-
-
-  // wish list
-  const addToWishlist = async (product) => {
-    const updatedWishlist = [...wishList];
-    const existingItem = updatedWishlist.find((item) => item.id === product.id);
-    if (!loggedIn) {
-      setToastMessage(<>Please log in to add items to your cart</>);
-    } else if (!existingItem) {
-      updatedWishlist.push(product);
-      setWishList(updatedWishlist);
-      await updateUserWishlistInDB(updatedWishlist);
-      setToastMessage(
-        <>
-          Added to your wishlist
-          <br />
-          <span>Available under profile</span>
-        </>
-      );
-    } else {
-      setToastMessage(<>Item already in wishlist!!</>);
-    }
-  };
-
-  // Remove items from wishlist
-  const removeFromWishlist = async (productId) => {
-    const updatedWishlist = wishList.filter((item) => item.id !== productId);
-    setWishList(updatedWishlist);
-    await updateUserWishlistInDB(updatedWishlist);
-  };
-
-  // Clear entire wishlist
-  const clearWishlist = async () => {
-    setWishList([]);
-    await updateUserWishlistInDB([]);
-  };
-
-
 
   const addToCart = async (product) => {
-
     const updatedCart = [...cart];
     const existingItem = updatedCart.find((item) => item.id === product.id);
     if (existingItem) {
@@ -227,19 +161,14 @@ const totelAmount = cart.reduce((acc,val) => acc+( val.price * val.quantity) , 0
     <ProductContext.Provider
       value={{
         totelAmount,
-        
         product,
         cart,
         setCart,
         incrementQuantity,
         removeFromCart,
-        addToWishlist,
-        clearWishlist,
-        removeFromWishlist,
         addToCart,
         curretUser,
         setCetogery,
-        setSerchTream,
         decrementQuantity,
         orders,
         setOrders,

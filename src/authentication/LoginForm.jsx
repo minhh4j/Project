@@ -33,8 +33,12 @@ function LoginForm() {
       const user = users.find(
         (x) => x.email === values.email && x.password === values.password
       );
+      
 
       if (user) {
+        // if(user.email === "admin@gmail.com"){
+        //   navigate("/orders")
+        // }
         localStorage.setItem("id",user.id)
         localStorage.setItem("username", user.username);
         toast.success("Login successful!", {
