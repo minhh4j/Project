@@ -59,7 +59,7 @@ function Signupdup() {
   // /g
   return (
     <div className="flex items-center justify-start min-h-screen px-4"style={{
-      backgroundImage: `url('https://as2.ftcdn.net/v2/jpg/01/99/00/79/1000_F_199007925_NolyRdRrdYqUAGdVZV38P4WX8pYfBaRP.jpg')`,
+      backgroundImage: `url('https://img.freepik.com/free-photo/view-cats-dogs-showing-friendship_23-2151806307.jpg?t=st=1732356670~exp=1732360270~hmac=6f2850fe06bcd19906d2ad96e76d5dbde337de072705fc194207ede203140ad0&w=1380')`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',

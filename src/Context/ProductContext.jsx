@@ -14,19 +14,13 @@ function ProductProvider({ children }) {
   const [orders, setOrders] = useState([]);
   const [search,setSearch]=useState('')
   const id = localStorage.getItem("id")
-  
-
-  // const handleSetOrders = (order) => {
-  //   setOrders((prevOrders) => [...prevOrders, order]); // Adds new order to the list
-  // };
-
   const navigate = useNavigate();
   const [filteredProduct, setFilteredProduct] = useState([]);
-  console.log(cart,"this is cart");
-let x=cart.length
-localStorage.setItem("cartCount",x);
-console.log(cart);
-
+  useEffect(() => {
+    // Save cart length to localStorage whenever cart changes
+    localStorage.setItem("cartCount", cart.length);
+    console.log(cart, "this is cart");
+  }, [cart]);
 
   //fetch products in home page
   useEffect(() => {
@@ -125,10 +119,10 @@ console.log(cart);
     const existingItem = updatedCart.find((item) => item.id === product.id);
     if (existingItem) {
       existingItem.quantity += 1;
+      // alert("all rady item in cart")
     } else {
+    
       updatedCart.push({ ...product, quantity: 1 });
-      console.log(product,"sdf")
-
     }
     setCart(updatedCart);
     
@@ -154,7 +148,11 @@ console.log(cart);
   }, [id]);
   
 
-const totelAmount = cart.reduce((acc,val) => acc+( val.price * val.quantity) , 0).toFixed(2)
+  const totelAmount = () => {
+    const total = cart.reduce((acc, val) => acc + (val.price * val.quantity), 0);
+    return total.toFixed(2);  
+  };
+  
 
 
   return (

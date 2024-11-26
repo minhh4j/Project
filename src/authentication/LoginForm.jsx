@@ -36,9 +36,10 @@ function LoginForm() {
       
 
       if (user) {
-        // if(user.email === "admin@gmail.com"){
-        //   navigate("/orders")
-        // }
+        if(user.email === "admin@gmail.com"){
+          navigate("/adminpage")
+          return
+        }
         localStorage.setItem("id",user.id)
         localStorage.setItem("username", user.username);
         toast.success("Login successful!", {
@@ -74,7 +75,7 @@ function LoginForm() {
     <div
   className="flex items-center justify-center min-h-screen"
   style={{
-    backgroundImage: `url('https://as1.ftcdn.net/v2/jpg/01/67/61/88/1000_F_167618810_WYbpRVYGFXQrBOj2Hj3L1uaMRk1kjx15.jpg')`,
+    backgroundImage: `url('https://img.freepik.com/free-photo/view-cats-dogs-showing-friendship_23-2151806300.jpg?t=st=1732357015~exp=1732360615~hmac=586f4bdae6736e8e5b291a630114fca5b4ed5544af861e1c27c33790d94c11de&w=1380')`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
