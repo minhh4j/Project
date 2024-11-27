@@ -5,13 +5,16 @@ export const AdminContext =  createContext()
 
 function AdminProvider({children}) {
 
-    const [product , setProduct] = useState([])
+    const [products , setProducts] = useState([])
+    const [users , setUsers] = useState([])
 
+
+    // fetch product 
     useEffect(() => {
         const FetchData = async () => {
             try{
                 const response = await axios.get("http://localhost:3008/products")
-                setProduct(response.data)
+                setProducts(response.data)
             }
             catch(error){
                 console.error(error)
@@ -19,9 +22,25 @@ function AdminProvider({children}) {
         }
         FetchData()
     },[])
+    
+    // fetch user
+    useEffect(() => {
+        const fetchUser = async () => {
+            try{
+                const respoonce = await axios.get("http://localhost:3008/user")
+                const data = respoonce.data
+                const fltred = data.filter((item) => item.role != "admin")
+                setUsers(fltred)
+            }
+            catch(error){
+                console.error(error)
+            }
+        }
+        fetchUser()
+    })
 
   return (
-    <AdminContext.Provider value={{product}}>
+    <AdminContext.Provider value={{products , users}}>
         {children}
     </AdminContext.Provider>
   )
