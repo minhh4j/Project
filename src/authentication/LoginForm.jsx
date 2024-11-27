@@ -3,7 +3,6 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import React, { useContext, useEffect } from "react";
 import axios from "axios";
-import { ProductContext } from "../Context/ProductContext";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,7 +34,7 @@ function LoginForm() {
       );
       
 
-      if (user) {
+      if (user.status === true) {
         if(user.email === "admin@gmail.com"){
           navigate("/adminpage")
           return
@@ -47,7 +46,11 @@ function LoginForm() {
           autoClose: 2000,
           onClose: () => navigate("/"),
         });
-      } else {
+      }
+      else if(user.status === false){
+        toast.error("Your Accound Has Been Blocked"); 
+      }
+      else {
         setErrors({ login: "Invalid email or password" });
         toast.error("Invalid email or password");
       }

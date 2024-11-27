@@ -40,7 +40,7 @@ function AdminProvider({children}) {
     })
 
   return (
-    <AdminContext.Provider value={{products , users}}>
+    <AdminContext.Provider value={{products , users , setUsers}}>
         {children}
     </AdminContext.Provider>
   )

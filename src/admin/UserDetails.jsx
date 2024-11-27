@@ -1,20 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../Context/AdminContext";
+import axios from "axios";
+
 
 function UserDetails() {
-  const { users } = useContext(AdminContext);
-
+  const { users , setUsers } = useContext(AdminContext);
   if (!users || users.length === 0) {
     return <p className="text-center text-gray-500">No users found.</p>;
+    
   }
 
-  const handleBlockUser = (userId) => {
-    console.log(`User with ID ${userId} has been blocked.`);
+  
+  
+  const handleBlockUser = async (userId , userName , status) => {
+    
+    
+    
+ console.log(`User with name ${userName} has been blocked.`);
+const toast = document.createElement('div');
+toast.textContent = `User with name ${userName} has been blocked.`;
+Object.assign(toast.style, {
+    position: 'fixed', bottom: '20px', right: '20px',
+    background: '#333', color: '#fff', padding: '10px 20px',
+    borderRadius: '5px', zIndex: '1000'
+});
+document.body.appendChild(toast);
+setTimeout(() => toast.remove(), 3000);
+
+
+try{
+  const response = await axios.patch(`http://localhost:3008/user/${userId}` , {status:!status})
+  setUsers(users.map((userlist) => (userlist.id === userId ?{...userlist,status : !status} :{...userlist})))
+}
+catch(error){
+  console.error(error)
+}
+
+
   };
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="mb-6 text-2xl font-semibold text-gray-700">User Details</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-xl">
           <thead className="text-white bg-black">
@@ -38,10 +64,10 @@ function UserDetails() {
                 <td className="px-6 py-4">{user.productItem || "N/A"}</td>
                 <td className="px-6 py-4">
                   <button
-                    onClick={() => handleBlockUser(user.id)}
-                    className="px-4 py-2 text-white bg-red-600 rounded-md shadow-md hover:bg-red-700"
+                    onClick={() => handleBlockUser(user.id , user.username , user.status)}
+                    className= {"px-4 py-2 text-white bg-red-600 rounded-md shadow-md hover:bg-red-700"  }
                   >
-                    Block
+                  {user.status ? "Block" : "Unblock"}
                   </button>
                 </td>
               </tr>

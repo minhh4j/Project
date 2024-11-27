@@ -11,6 +11,7 @@ function Signupdup() {
     email: "",
     password: "",
     cpassword: "",
+    status:true,
     cart:[],
     order:[]
   };
