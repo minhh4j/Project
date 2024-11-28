@@ -79,7 +79,7 @@ function Cart() {
 
             <div className="mt-6 text-right">
               <h4 className="text-lg font-semibold">
-                Total Price: <span className="text-blue-600">₹{totelAmount}</span>
+                Total Price: <span className="text-blue-600">₹{totelAmount()}</span>
               </h4>
               <button
                 onClick={() => navigate("/payment")}

@@ -119,7 +119,7 @@ const PaymentForm = () => {
                   Total Amount:
                 </label>
         
-               <h3>{totelAmount}</h3>
+               <h3>{totelAmount()}</h3>
               </div>
 
               <button

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ProductContext } from "../Context/ProductContext";
 
 function Orders() {
-  const { orders } = useContext(ProductContext);
+  const { orders ,  totelAmount, } = useContext(ProductContext);
   console.log(orders,"order");
   
 
@@ -16,7 +16,7 @@ function Orders() {
           <div key={index} className="p-6 mb-4 bg-white rounded-lg shadow-md">
             <h3 className="text-xl font-semibold">Order #{index + 1}</h3>
             <p className="mt-2 text-sm text-gray-500">Order Date: {order.orderDate}</p>
-            <h4 className="mt-4 text-lg font-semibold">Total: ₹{order.totalAmount}</h4>
+            <h4 className="mt-4 text-lg font-semibold">Total: ₹{order.items.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</h4>
             <p className="mt-2 text-sm text-gray-500">Name: {order.name}</p>
             <p className="mt-2 text-sm text-gray-500">Phone Number:{order.phone}</p>
             <p className="mt-2 text-sm text-gray-500">Address: {order.address}</p>

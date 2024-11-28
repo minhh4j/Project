@@ -1,153 +1,4 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import { AdminContext } from "../Context/AdminContext";
-// import axios from "axios";
-// import { MdClose } from "react-icons/md";
 
-
-// function UserDetails() {
-//   const { users, setUsers } = useContext(AdminContext);
-//   const [userShow, setUserShow] = useState(null);
-//   if (!users || users.length === 0) {
-//     return <p className="text-center text-gray-500">No users found.</p>;
-//   }
-
-//   const handleBlockUser = async (userId, userName, status) => {
-//     console.log(`User with name ${userName} has been blocked.`);
-//     const toast = document.createElement("div");
-//     toast.textContent = `User with name ${userName} has been blocked.`;
-//     Object.assign(toast.style, {
-//       position: "fixed",
-//       bottom: "20px",
-//       right: "20px",
-//       background: "#333",
-//       color: "#fff",
-//       padding: "10px 20px",
-//       borderRadius: "5px",
-//       zIndex: "1000",
-//     });
-//     document.body.appendChild(toast);
-//     setTimeout(() => toast.remove(), 3000);
-
-//     try {
-//       const response = await axios.patch(
-//         `http://localhost:3008/user/${userId}`,
-//         { status: !status }
-//       );
-//       setUsers(
-//         users.map((userlist) =>
-//           userlist.id === userId
-//             ? { ...userlist, status: !status }
-//             : { ...userlist }
-//         )
-//       );
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen p-6 bg-gray-100">
-//       <div className="overflow-x-auto">
-//         <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-xl">
-//           <thead className="text-white bg-black">
-//             <tr>
-//               <th className="px-6 py-3 text-left">User Name</th>
-//               <th className="px-6 py-3 text-left">Email</th>
-//               <th className="px-6 py-3 text-left">Block User</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {users.map((user) => (
-//               <tr
-//                 key={user.id}
-//                 className={`${
-//                   user.id % 2 === 0 ? "bg-gray-50" : "bg-white"
-//                 } hover:bg-gray-200 transition duration-300 ease-in-out`}
-//                 onDoubleClick={() => setUserShow(users)}
-//               >
-//                 <td className="px-6 py-4">{user.username}</td>
-//                 <td className="px-6 py-4">{user.email}</td>
-//                 <td className="px-6 py-4">
-//                   <button
-//                     onClick={() =>
-//                       handleBlockUser(user.id, user.username, user.status)
-//                     }
-//                     className={
-//                       "px-4 py-2 text-white bg-red-600 rounded-md shadow-md hover:bg-red-700"
-//                     }
-//                   >
-//                     {user.status ? "Block" : "Unblock"}
-//                   </button>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-
-//         {userShow && (
-//           <div>
-//             <div>
-//               <MdClose
-//                 className="absolute text-gray-600 cursor-pointer top-2 right-2"
-//                 onClick={() => setUserShow(null)}
-//                 size={24}
-//               />
-//               <p>
-//                 Name :<strong>{userShow.username}</strong>
-//               </p>
-//               <p>
-//                 Email :<strong>{userShow.email}</strong>
-//               </p>
-//               {userShow.order.length === 0 ? (
-//                 <h3>No Oreders </h3>
-//               ) : (
-//                 <>
-//                   {userShow.map((order, index) => (
-//                     <div key={order.id}>
-//                       <p>
-//                         <strong>Order {index + 1}</strong>
-//                       </p>
-//                       <p>
-//                         <strong>Date : </strong>{" "}
-//                         {new Date(order.date).toLocaleString}
-//                       </p>
-//                       <ul>
-//                       {order.item.map((item) => (
-//   <li key={item.id} className="flex justify-between">
-//     <span>{item.name}</span>
-//     <span>
-//       {item.quantity} x {item.price}
-//     </span>
-//     <span>{item.price * item.quantity}</span>
-//   </li>
-// ))}
-                        
-//                       </ul>
-//                       <p>
-//                         <strong>Total:</strong> {order.total}
-//                       </p>
-//                     </div>
-//                   ))}
-//                   <div className="flex items-center justify-center mt-4">
-//                     <p>
-//                       <strong>Total Amount:</strong>{" "}
-//                       {userShow.order.reduce(
-//                         (acc, order) => acc + order.total,
-//                         0
-//                       )}
-//                     </p>
-//                   </div>
-//                 </>
-//               )}
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default UserDetails;
 import React, { useContext, useState } from "react";
 import { AdminContext } from "../Context/AdminContext";
 import axios from "axios";
@@ -155,7 +6,7 @@ import { MdClose } from "react-icons/md";
 
 function UserDetails() {
   const { users, setUsers } = useContext(AdminContext);
-  const [selectedUser, setSelectedUser] = useState(null); // Modal state
+  const [selectedUser, setSelectedUser] = useState(null);
 
   if (!users || users.length === 0) {
     return <p className="text-center text-gray-500">No users found.</p>;
@@ -164,12 +15,12 @@ function UserDetails() {
   const handleBlockUser = async (userId, userName, status) => {
     const toast = document.createElement("div");
     toast.textContent = `User with name ${userName} has been ${
-      status ? "unblocked" : "blocked"
+      status ? "blocked":"unblocked"  
     }.`;
     Object.assign(toast.style, {
       position: "fixed",
-      bottom: "20px",
-      right: "20px",
+      top: "20px",
+      left: "800px",
       background: "#333",
       color: "#fff",
       padding: "10px 20px",
@@ -211,7 +62,7 @@ function UserDetails() {
                 className={`${
                   user.id % 2 === 0 ? "bg-gray-50" : "bg-white"
                 } hover:bg-gray-200 transition duration-300 ease-in-out`}
-                onDoubleClick={() => setSelectedUser(user)} // Open modal with specific user
+                onDoubleClick={() => setSelectedUser(user)}
               >
                 <td className="px-6 py-4">{user.username}</td>
                 <td className="px-6 py-4">{user.email}</td>
@@ -233,11 +84,11 @@ function UserDetails() {
         {/* Modal Section */}
         {selectedUser && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="relative w-1/2 p-6 bg-white rounded-lg shadow-lg">
+            <div className="relative w-full max-w-lg p-6 bg-white rounded-lg shadow-lg">
               <MdClose
                 className="absolute text-gray-600 cursor-pointer top-2 right-2"
                 size={24}
-                onClick={() => setSelectedUser(null)} // Close modal
+                onClick={() => setSelectedUser(null)}
               />
               <h2 className="mb-4 text-xl font-bold">User Details</h2>
               <p>
@@ -254,36 +105,44 @@ function UserDetails() {
                       <p>
                         <strong>Order {index + 1}:</strong>
                       </p>
-                      <p>
-                        <strong>Date:</strong>{" "}
-                        {new Date(order.date).toLocaleString()}
-                      </p>
                       <ul className="pl-6 list-disc">
                         {order.items.map((item, itemIndex) => (
-                          <li
-                            key={itemIndex}
-                            className="flex justify-between"
-                          >
+                          <li key={itemIndex} className="flex justify-between">
                             <span>{item.name}</span>
                             <span>
-                              {item.quantity} x {item.price}
+                              {item.quantity} x ₹{item.price}
                             </span>
-                            <span>{item.price * item.quantity}</span>
+                            <span>₹{item.price * item.quantity}</span>
                           </li>
                         ))}
                       </ul>
-                      <p>
-                        <strong>Total:</strong> {order.total}
-                      </p>
+                      <h4 className="mt-4 text-lg font-semibold">
+                        Total: ₹
+                        {order.items
+                          .reduce(
+                            (acc, item) => acc + item.price * item.quantity,
+                            0
+                          )
+                          .toFixed(2)}
+                      </h4>
                     </div>
                   ))}
                   <div className="flex items-center justify-center mt-4">
                     <p>
-                      <strong>Total Amount:</strong>{" "}
-                      {selectedUser.order.reduce(
-                        (acc, order) => acc + order.total,
-                        0 
-                      )}
+                      <strong>Total Amount Across All Orders:</strong>{" "}
+                      ₹
+                      {selectedUser.order
+                        .reduce(
+                          (acc, order) =>
+                            acc +
+                            order.items.reduce(
+                              (sum, item) =>
+                                sum + item.price * item.quantity,
+                              0
+                            ),
+                          0
+                        )
+                        .toFixed(2)}
                     </p>
                   </div>
                 </>
