@@ -39,8 +39,9 @@ function AdminProvider({children}) {
         fetchUser()
     })
 
+
   return (
-    <AdminContext.Provider value={{products , users , setUsers}}>
+    <AdminContext.Provider value={{products , users , setUsers ,}}>
         {children}
     </AdminContext.Provider>
   )

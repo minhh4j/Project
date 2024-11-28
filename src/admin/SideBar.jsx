@@ -40,7 +40,9 @@ function SideBar() {
           >
             Products
           </button>
-          <button className="w-full p-3 text-lg text-left transition-colors duration-300 rounded-md cursor-pointer hover:bg-gray-700 hover:text-white">
+          <button className="w-full p-3 text-lg text-left transition-colors duration-300 rounded-md cursor-pointer hover:bg-gray-700 hover:text-white"
+          onClick={() => navigate("/login")}
+          >
             Logout
           </button>
         </div>

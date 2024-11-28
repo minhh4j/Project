@@ -22,7 +22,7 @@
       "email": "nifras@gmail.com",
       "password": "147258",
       "cpassword": "147258",
-      "status": false,
+      "status": true,
       "cart": [],
       "order": []
     }

@@ -34,11 +34,12 @@ function LoginForm() {
       );
       
 
-      if (user.status === true) {
+     
         if(user.email === "admin@gmail.com"){
           navigate("/adminpage")
           return
         }
+        if (user.status === true) {
         localStorage.setItem("id",user.id)
         localStorage.setItem("username", user.username);
         toast.success("Login successful!", {
