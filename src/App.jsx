@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductProvider from "./Context/ProductContext";
 import HomePage from "./homepage/HomePage";
-import Cart from "./cart/cart";
+import Cart from "./cart/Cart";
 import Orders from "./cart/Orders";
 import PaymentForm from "./cart/PaymentFrom";
 import AdminPage from "./admin/AdminPage";

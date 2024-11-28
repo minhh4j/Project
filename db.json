@@ -280,7 +280,31 @@
       "cpassword": "147258",
       "status": true,
       "cart": [],
-      "order": []
+      "order": [
+        {
+          "name": "nifras",
+          "address": "kunnumkulam",
+          "phone": "6238896686",
+          "items": [
+            {
+              "id": "57cc",
+              "name": "Nayi Food",
+              "price": 199.99,
+              "oldPrice": 369.25,
+              "category": "dog",
+              "stock": 14,
+              "image": "https://imgs.search.brave.com/R1TraJAUKC2C7SnZjF-_CSxfbDtqrWoZRrXfpxS278A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzEySEFGd1BXREwu/anBn",
+              "description": "ith oru nayite food aanu",
+              "seller": "...",
+              "ingredients": [
+                "maydha  godhambu "
+              ],
+              "quantity": 1
+            }
+          ],
+          "orderDate": "2024-11-28T08:38:08.041Z"
+        }
+      ]
     }
   ],
   "products": [
@@ -709,47 +733,6 @@
         "Chicken fat (preserved with mixed tocopherols)",
         "Carrots",
         "Peas",
-        "Vitamins and minerals",
-        "Taurine"
-      ]
-    },
-    {
-      "id": "23",
-      "name": "Ultimate Pup Dog Food",
-      "price": 314.99,
-      "oldPrice": 472.49,
-      "image": "/src/assets/dogProduct/pd12.jpg",
-      "category": "dog",
-      "seller": "Happy Pets",
-      "stock": 51,
-      "description": "Ultimate Pup Dog Food is a complete and balanced meal that promotes healthy growth and energy for active dogs.",
-      "ingredients": [
-        "Chicken meal",
-        "Brown rice",
-        "Oats",
-        "Chicken fat (preserved with mixed tocopherols)",
-        "Carrots",
-        "Blueberries",
-        "Vitamins and minerals",
-        "Taurine"
-      ]
-    },
-    {
-      "id": "24",
-      "name": "Cat Nutritious Food",
-      "price": 114.99,
-      "oldPrice": 272.49,
-      "image": "/src/assets/catProduct/cat12.webp",
-      "category": "cat",
-      "seller": "Happy Cat",
-      "stock": 55,
-      "description": "Cat Nutritious Food provides a balanced diet for cats, with all essential vitamins and minerals to support overall health.",
-      "ingredients": [
-        "Chicken meal",
-        "Corn",
-        "Wheat",
-        "Chicken fat (preserved with mixed tocopherols)",
-        "Beet pulp",
         "Vitamins and minerals",
         "Taurine"
       ]
