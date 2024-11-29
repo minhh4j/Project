@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Nav from "./nav";
+import Nav from "./Nav";
 import HeroSection from "./HeroSection";
 import Center from "./Center";
 import { ProductContext } from "../Context/ProductContext";

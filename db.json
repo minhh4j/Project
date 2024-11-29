@@ -303,6 +303,80 @@
             }
           ],
           "orderDate": "2024-11-28T08:38:08.041Z"
+        },
+        {
+          "name": "sulaimaan",
+          "address": "moochikkal  kundanoor",
+          "phone": "998655986",
+          "items": [
+            {
+              "id": "18",
+              "name": "Ruff and Tumble Dog Food",
+              "price": 699.99,
+              "oldPrice": 1049.99,
+              "image": "/src/assets/dogProduct/pd7.webp",
+              "category": "dog",
+              "seller": "Cat Haven",
+              "stock": 57,
+              "description": "Ruff and Tumble Dog Food is a premium formula for dogs that combines high-quality proteins with essential nutrients to maintain health and vitality.",
+              "ingredients": [
+                "Salmon meal",
+                "Sweet potatoes",
+                "Peas",
+                "Chicken fat (preserved with mixed tocopherols)",
+                "Flaxseed",
+                "Carrots",
+                "Vitamins and minerals",
+                "Taurine"
+              ],
+              "quantity": 1
+            },
+            {
+              "id": "19",
+              "name": "Super Dog Fuel High Rich",
+              "price": 487.99,
+              "oldPrice": 731.99,
+              "image": "/src/assets/dogProduct/pd8.webp",
+              "category": "dog",
+              "seller": "PetWorld",
+              "stock": 56,
+              "description": "Super Dog Fuel High Rich is an energy-dense formula designed for highly active dogs that require extra calories and nutrients.",
+              "ingredients": [
+                "Beef meal",
+                "Brown rice",
+                "Barley",
+                "Chicken fat (preserved with mixed tocopherols)",
+                "Dried egg product",
+                "Flaxseed",
+                "Vitamins and minerals",
+                "Taurine"
+              ],
+              "quantity": 1
+            },
+            {
+              "id": "20",
+              "name": "Barker's Delight Dog Food",
+              "price": 678.99,
+              "oldPrice": 1018.49,
+              "image": "/src/assets/dogProduct/pd9.webp",
+              "category": "dog",
+              "seller": "Animal Kingdom",
+              "stock": 54,
+              "description": "Barker's Delight Dog Food offers a satisfying meal for dogs, packed with protein-rich ingredients and essential nutrients for overall well-being.",
+              "ingredients": [
+                "Chicken meal",
+                "Whole grain oats",
+                "Brown rice",
+                "Chicken fat (preserved with mixed tocopherols)",
+                "Carrots",
+                "Peas",
+                "Vitamins and minerals",
+                "Taurine"
+              ],
+              "quantity": 1
+            }
+          ],
+          "orderDate": "2024-11-29T10:35:13.251Z"
         }
       ]
     }
@@ -312,37 +386,37 @@
       "name": "Barky Bites Premium Dog Food",
       "price": 528.75,
       "oldPrice": 793.11,
-      "image": "/src/assets/dogProduct/pd1.jpg",
       "category": "dog",
-      "seller": "PetWorld",
-      "stock": 0,
-      "id": "1",
+      "stock": 38,
+      "image": "/src/assets/dogProduct/pd1.jpg",
       "description": "Barky Bites Premium Dog Food is formulated with high-quality ingredients to provide your dog with a balanced diet. Rich in proteins and healthy fats, this food supports your dog's active lifestyle.",
+      "seller": "PetWorld",
       "ingredients": [
         "Chicken meal",
         "Brown rice",
         "Sweet potatoes",
         "Carrots",
         "Flaxseed"
-      ]
+      ],
+      "id": "1"
     },
     {
       "name": "TailWaggers Nutrition Dog Food",
       "price": 123.65,
       "oldPrice": 185.48,
-      "image": "/src/assets/dogProduct/pd2.jpg",
       "category": "dog",
-      "seller": "Animal Kingdom",
       "stock": 21,
-      "id": "2",
+      "image": "/src/assets/dogProduct/pd2.jpg",
       "description": "TailWaggers Nutrition Dog Food is crafted with a blend of wholesome ingredients to keep your dog healthy and happy. This recipe includes essential vitamins and minerals for overall well-being.",
+      "seller": "Animal Kingdom",
       "ingredients": [
         "Lamb meal",
         "Brown rice",
         "Barley",
         "Peas",
         "Chicken fat"
-      ]
+      ],
+      "id": "2"
     },
     {
       "name": "WhiskerLickin' Cat Chow",
