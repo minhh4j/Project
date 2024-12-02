@@ -9,7 +9,7 @@ import { ProductContext } from "../Context/ProductContext";
 import { useNavigate } from "react-router-dom";
 
 function Nav() {
-  const { setSearchTerm, product, setCart, setSearch } = useContext(ProductContext);
+  const { setCart, setSearch,cart } = useContext(ProductContext);
 
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -17,7 +17,7 @@ function Nav() {
 
   const username = localStorage.getItem("username");
   const isLoggedIn = Boolean(localStorage.getItem("id"));
-  const cartCount = localStorage.getItem("cartCount") || 0;
+  const cartCount = cart.length   //localStorage.getItem("cartCount") || 0;
 
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();

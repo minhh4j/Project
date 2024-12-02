@@ -12,7 +12,7 @@
       "email": "messi@gmail.com",
       "password": "123654",
       "cpassword": "123654",
-      "status": true,
+      "status": false,
       "cart": [],
       "order": [
         {
@@ -279,7 +279,27 @@
       "password": "147258",
       "cpassword": "147258",
       "status": true,
-      "cart": [],
+      "cart": [
+        {
+          "name": "TailWaggers Nutrition Dog Food",
+          "price": 123.65,
+          "oldPrice": 185.48,
+          "category": "dog",
+          "stock": 0,
+          "image": "/src/assets/dogProduct/pd2.jpg",
+          "description": "TailWaggers Nutrition Dog Food is crafted with a blend of wholesome ingredients to keep your dog healthy and happy. This recipe includes essential vitamins and minerals for overall well-being.",
+          "seller": "Animal Kingdom",
+          "ingredients": [
+            "Lamb meal",
+            "Brown rice",
+            "Barley",
+            "Peas",
+            "Chicken fat"
+          ],
+          "id": "2",
+          "quantity": 1
+        }
+      ],
       "order": [
         {
           "name": "nifras",
@@ -377,17 +397,109 @@
             }
           ],
           "orderDate": "2024-11-29T10:35:13.251Z"
+        },
+        {
+          "name": "asees",
+          "address": "usa",
+          "phone": "998655986",
+          "items": [
+            {
+              "name": "TailWaggers Nutrition Dog Food",
+              "price": 123.65,
+              "oldPrice": 185.48,
+              "category": "dog",
+              "stock": 21,
+              "image": "/src/assets/dogProduct/pd2.jpg",
+              "description": "TailWaggers Nutrition Dog Food is crafted with a blend of wholesome ingredients to keep your dog healthy and happy. This recipe includes essential vitamins and minerals for overall well-being.",
+              "seller": "Animal Kingdom",
+              "ingredients": [
+                "Lamb meal",
+                "Brown rice",
+                "Barley",
+                "Peas",
+                "Chicken fat"
+              ],
+              "id": "2",
+              "quantity": 1
+            },
+            {
+              "name": "WhiskerLickin' Cat Chow",
+              "price": 374.36,
+              "oldPrice": 561.54,
+              "image": "/src/assets/catProduct/cat1.webp",
+              "category": "cat",
+              "seller": "Feline Friends",
+              "id": "3",
+              "stock": 44,
+              "description": "WhiskerLickin' Cat Chow is specially formulated to meet the dietary needs of cats, providing a balanced mix of proteins and nutrients for optimal health.",
+              "ingredients": [
+                "Chicken meal",
+                "Corn",
+                "Soybean meal",
+                "Beet pulp",
+                "Fish meal"
+              ],
+              "quantity": 1
+            },
+            {
+              "id": "6",
+              "name": "Kitty Krunch Gourmet Cat Food",
+              "price": 785.95,
+              "oldPrice": 1178.93,
+              "image": "/src/assets/catProduct/cat2.webp",
+              "category": "cat",
+              "seller": "Cat Haven",
+              "stock": 55,
+              "description": "Kitty Krunch Gourmet Cat Food is crafted with premium ingredients to support your cat's health and vitality. This formula is rich in proteins and omega fatty acids.",
+              "ingredients": [
+                "Chicken meal",
+                "Rice",
+                "Oats",
+                "Peas",
+                "Salmon oil"
+              ],
+              "quantity": 1
+            }
+          ],
+          "orderDate": "2024-11-30T09:22:29.395Z"
+        },
+        {
+          "name": "minhaj",
+          "address": "malappuram",
+          "phone": "7896541256",
+          "items": [
+            {
+              "name": "WhiskerLickin' Cat Chow",
+              "price": 374.36,
+              "oldPrice": 561.54,
+              "image": "/src/assets/catProduct/cat1.webp",
+              "category": "cat",
+              "seller": "Feline Friends",
+              "id": "3",
+              "stock": 44,
+              "description": "WhiskerLickin' Cat Chow is specially formulated to meet the dietary needs of cats, providing a balanced mix of proteins and nutrients for optimal health.",
+              "ingredients": [
+                "Chicken meal",
+                "Corn",
+                "Soybean meal",
+                "Beet pulp",
+                "Fish meal"
+              ],
+              "quantity": 1
+            }
+          ],
+          "orderDate": "2024-11-30T09:32:26.611Z"
         }
       ]
     }
   ],
   "products": [
     {
-      "name": "Barky Bites Premium Dog Food",
-      "price": 528.75,
-      "oldPrice": 793.11,
+      "name": "Royal Dog Food",
+      "price": 528.78,
+      "oldPrice": 1793.11,
       "category": "dog",
-      "stock": 38,
+      "stock": 0,
       "image": "/src/assets/dogProduct/pd1.jpg",
       "description": "Barky Bites Premium Dog Food is formulated with high-quality ingredients to provide your dog with a balanced diet. Rich in proteins and healthy fats, this food supports your dog's active lifestyle.",
       "seller": "PetWorld",
@@ -405,7 +517,7 @@
       "price": 123.65,
       "oldPrice": 185.48,
       "category": "dog",
-      "stock": 21,
+      "stock": 0,
       "image": "/src/assets/dogProduct/pd2.jpg",
       "description": "TailWaggers Nutrition Dog Food is crafted with a blend of wholesome ingredients to keep your dog healthy and happy. This recipe includes essential vitamins and minerals for overall well-being.",
       "seller": "Animal Kingdom",

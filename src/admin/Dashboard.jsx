@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { AdminContext } from "../Context/AdminContext";
 
 function Dashboard() {
-  const { products, users } = useContext(AdminContext);
+  const { products, users  , totalRevenue} = useContext(AdminContext);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   // Get unique categories
@@ -19,15 +19,7 @@ function Dashboard() {
   const blockCount = blockedUsers.length;
 
   // Empty stock products
-  const emptyProducts = products.filter((product) => product.quantity === 0);
-
-  // Total sales
-  const salePrice = products.reduce((acc, crt) => {
-    if (crt.order) {
-      return acc + crt.order.reduce((orderAcc, order) => orderAcc + order.total, 0);
-    }
-    return acc;
-  }, 0);
+  const emptyProducts = products.filter((product) => product.stock === 0);
 
   const categoryCounts = products.reduce((acc, product) => {
     if (!acc[product.category]) {
@@ -56,7 +48,7 @@ function Dashboard() {
         </div>
         <div className="col-span-1 p-6 transition-transform transform bg-white rounded-lg shadow-lg md:col-span-3 hover:scale-105 hover:shadow-2xl">
           <h3 className="text-xl font-semibold text-gray-700">Total Sales</h3>
-          <p className="text-3xl font-extrabold text-green-500">${salePrice.toFixed(2)}</p>
+          <p className="text-3xl font-extrabold text-green-500">₹{totalRevenue}</p>
         </div>
       </div>
 

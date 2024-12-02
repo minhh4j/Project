@@ -6,8 +6,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AdminContext } from "../Context/AdminContext";
 
 function LoginForm() {
+  
+  const {adminLogin} = useContext(AdminContext)
   const initialValues = {
     email: "",
     password: "",
@@ -36,7 +39,8 @@ function LoginForm() {
 
      
         if(user.email === "admin@gmail.com"){
-          navigate("/adminpage")
+          adminLogin()
+          // navigate("/adminpage")
           return
         }
         if (user.status === true) {

@@ -13,6 +13,7 @@ import Dashboard from "./admin/Dashboard";
 import HandleProducts from "./admin/HandleProducts";
 import UserDetails from "./admin/UserDetails";
 import AdminProvider from "./Context/AdminContext";
+import ProtectedAdmin from "./admin/ProtectedAdmin";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             <Route path="payment" element={<PaymentForm />} />
 
             {/* // admmin  */}
-            <Route path="adminpage" element={<AdminPage />}>
+            <Route path="adminpage" element={ <ProtectedAdmin><AdminPage /></ProtectedAdmin>}>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="handle-products" element={<HandleProducts />} />
               <Route path="user-details" element={<UserDetails />} />
