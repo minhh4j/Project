@@ -501,6 +501,82 @@
       "status": true,
       "cart": [],
       "order": []
+    },
+    {
+      "id": "ebb7",
+      "username": "rishad",
+      "email": "rishad@gmail.com",
+      "password": "123456",
+      "cpassword": "123456",
+      "status": true,
+      "cart": [],
+      "order": [
+        {
+          "name": "rishad ",
+          "address": "vengara",
+          "phone": "998655986",
+          "items": [
+            {
+              "name": "Royal Dog Food",
+              "price": 528.78,
+              "oldPrice": 1793.11,
+              "category": "dog",
+              "stock": 0,
+              "image": "/src/assets/dogProduct/pd1.jpg",
+              "description": "Barky Bites Premium Dog Food is formulated with high-quality ingredients to provide your dog with a balanced diet. Rich in proteins and healthy fats, this food supports your dog's active lifestyle.",
+              "seller": "PetWorld",
+              "ingredients": [
+                "Chicken meal",
+                "Brown rice",
+                "Sweet potatoes",
+                "Carrots",
+                "Flaxseed"
+              ],
+              "id": "1",
+              "quantity": 1
+            },
+            {
+              "name": "TailWaggers Nutrition Dog Food",
+              "price": 123.65,
+              "oldPrice": 185.48,
+              "category": "dog",
+              "stock": 0,
+              "image": "/src/assets/dogProduct/pd2.jpg",
+              "description": "TailWaggers Nutrition Dog Food is crafted with a blend of wholesome ingredients to keep your dog healthy and happy. This recipe includes essential vitamins and minerals for overall well-being.",
+              "seller": "Animal Kingdom",
+              "ingredients": [
+                "Lamb meal",
+                "Brown rice",
+                "Barley",
+                "Peas",
+                "Chicken fat"
+              ],
+              "id": "2",
+              "quantity": 1
+            },
+            {
+              "name": "WhiskerLickin' Cat Chow",
+              "price": 374.36,
+              "oldPrice": 561.54,
+              "image": "/src/assets/catProduct/cat1.webp",
+              "category": "cat",
+              "seller": "Feline Friends",
+              "id": "3",
+              "stock": 44,
+              "description": "WhiskerLickin' Cat Chow is specially formulated to meet the dietary needs of cats, providing a balanced mix of proteins and nutrients for optimal health.",
+              "ingredients": [
+                "Chicken meal",
+                "Corn",
+                "Soybean meal",
+                "Beet pulp",
+                "Fish meal"
+              ],
+              "quantity": 3
+            }
+          ],
+          "orderDate": "2024-12-03T08:17:09.516Z"
+        }
+      ]
     }
   ],
   "products": [

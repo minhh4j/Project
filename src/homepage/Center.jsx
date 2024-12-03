@@ -74,9 +74,9 @@ function Center() {
             <div className="h-full overflow-hidden transition-all duration-300 transform rounded-lg shadow-md bg-sky-300 card w-52 hover:scale-105 hover:shadow-xl">
               <img
                 src={item.image}
-                className="object-cover w-full h-32 cursor-pointer"
                 alt={item.name}
                 onClick={() => handleImageClick(item)}
+                style={{objectFit:"cover"}}
               />
               <div className="p-3 text-center">
                 <h6 className="text-sm font-semibold">{item.name}</h6>
