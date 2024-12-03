@@ -14,6 +14,7 @@ import HandleProducts from "./admin/HandleProducts";
 import UserDetails from "./admin/UserDetails";
 import AdminProvider from "./Context/AdminContext";
 import ProtectedAdmin from "./admin/ProtectedAdmin";
+import DefaultPage from "./homepage/DefaultPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="cartlist" element={<Cart />} />
             <Route path="orders" element={<Orders />} />
             <Route path="payment" element={<PaymentForm />} />
+            <Route path="*" element={<DefaultPage/>}/>
 
             {/* // admmin  */}
             <Route path="adminpage" element={ <ProtectedAdmin><AdminPage /></ProtectedAdmin>}>

@@ -71,7 +71,7 @@ function UserDetails() {
                     onClick={() =>
                       handleBlockUser(user.id, user.username, user.status)
                     }
-                    className="px-4 py-2 text-white bg-red-600 rounded-md shadow-md hover:bg-red-700"
+                    className={ user.status ? "px-4 py-2 text-white bg-red-600 rounded-md shadow-md hover:bg-red-800" : "px-4 py-2 text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-800"}
                   >
                     {user.status ? "Block" : "Unblock"}
                   </button>

@@ -12,7 +12,7 @@
       "email": "messi@gmail.com",
       "password": "123654",
       "cpassword": "123654",
-      "status": false,
+      "status": true,
       "cart": [],
       "order": [
         {
@@ -491,6 +491,16 @@
           "orderDate": "2024-11-30T09:32:26.611Z"
         }
       ]
+    },
+    {
+      "id": "827f",
+      "username": "hisham",
+      "email": "hisham@gmail.com",
+      "password": "123456",
+      "cpassword": "123456",
+      "status": true,
+      "cart": [],
+      "order": []
     }
   ],
   "products": [
